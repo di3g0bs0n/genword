@@ -150,3 +150,81 @@ w.add(p2)
 w.dump()
 w.zip()
 ```
+
+
+## <a id='s5-3' />Images
+
+```python
+from genword import Word, wImage, wBreak
+
+w = Word()
+w.create('/tmp/example.docx')
+
+#IMPORTANT! You must add the content-type
+w.addContentType(ext="png", ctype="image/png")
+w.addContentType(ext="jpg", ctype="image/jpeg")	
+
+# Use this option
+i = wImage("/tmp/logo.png")
+w.add(i)
+
+w.add(wBreak())
+
+# Or this option
+w.addImage("/tmp/logo.png")
+
+w.dump()
+w.zip()
+```
+
+## <a id='s5-4' />Tables
+
+```python
+from genword import Word, wTable, wParagraph, wTableRow, wTableCell
+
+w = Word()
+w.create('/tmp/example.docx')
+
+# Create the table
+t = wTable()
+t.setBorders()
+
+# Create row (headers)
+r = wTableRow(columns=3)
+r.setAlign("center")
+
+hoptions = {
+	"size":"28", 
+	"color": "00C6DA", 
+	"align":"center", 
+	"smallCaps": True, 
+	"bold": True
+}
+
+t1 = wParagraph("Header 1", hoptions)
+t2 = wParagraph("Header 2", hoptions)
+t3 = wParagraph("Header 3", hoptions)
+
+# Create the Cells
+c1 = wTableCell({"bgcolor":"2C6584"})
+c2 = wTableCell({"bgcolor":"2C6584"})
+c3 = wTableCell({"bgcolor":"2C6584"})
+
+c1.setText(t1)
+c2.setText(t2)
+c3.setText(t3)
+
+# Add cells to row
+r.addCells([c1, c2, c3])
+
+# Add row to table
+t.addRow(r)
+
+# You can repeat this process to add more rows...
+
+w.add(t)
+
+w.dump()
+w.zip()
+```
+
