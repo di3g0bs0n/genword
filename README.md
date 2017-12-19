@@ -10,6 +10,9 @@
 * [Components](#s5)
 	* [Paragraphs](#s5-1)
 	* [Breaks](#s5-2)
+	* [Images](#s5-3)
+	* [Tables](#s5-4)
+* [Known issues](#s99)
 
 
 # <a id='s2' />Genword
@@ -27,6 +30,7 @@ pip install genword
 If you can't install via pip, you also can install it manually:
 
 ```bash
+pip install -r requirements.txt
 python setup.py install
 ```
 
@@ -228,3 +232,18 @@ w.dump()
 w.zip()
 ```
 
+
+
+
+
+
+
+
+
+
+
+
+
+# <a id='s99' />Known issues
+
+* When you load a document, some elements can be splited in several components. For example, a textline can be stored in two or more wParagraph elements. This is a problem when you trying read or iterate the wParagraphs elements.
